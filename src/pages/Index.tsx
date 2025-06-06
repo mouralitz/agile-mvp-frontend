@@ -1,12 +1,38 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+
+import React, { useState } from 'react';
+import Navbar from '@/components/Navbar';
+import Sidebar from '@/components/Sidebar';
+import HeroSection from '@/components/HeroSection';
+import CategorySection from '@/components/CategorySection';
+import FeaturedProducts from '@/components/FeaturedProducts';
+import Footer from '@/components/Footer';
 
 const Index = () => {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen bg-white">
+      <Navbar onMenuToggle={toggleSidebar} />
+      
+      <div className="flex">
+        <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
+        
+        <main className="flex-1 lg:ml-64">
+          <HeroSection />
+          <CategorySection />
+          <FeaturedProducts />
+        </main>
       </div>
+      
+      <Footer />
     </div>
   );
 };
