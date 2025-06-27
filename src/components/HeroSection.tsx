@@ -26,12 +26,14 @@ const HeroSection = () => {
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              size="lg" 
-              className="bg-gradient-to-r from-sage-600 to-sage-700 hover:from-sage-700 hover:to-sage-800 text-white px-8 py-3 text-lg"
-            >
-              Explorar Produtos
-            </Button>
+            <a href="/products" className="inline-block">
+              <Button 
+                size="lg" 
+                className="bg-gradient-to-r from-sage-600 to-sage-700 hover:from-sage-700 hover:to-sage-800 text-white px-8 py-3 text-lg w-full sm:w-auto"
+              >
+                Explorar Produtos
+              </Button>
+            </a>
             <Button 
               size="lg" 
               variant="outline"

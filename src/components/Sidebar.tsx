@@ -1,22 +1,23 @@
 
+
 import React from 'react';
-import { Home, Users, Settings, Plus, List, Calendar } from 'lucide-react';
-import { Button } from '@/components/ui/button';
+import { Home, Users, Plus, List } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { Link, useLocation } from 'react-router-dom';
 
 interface SidebarProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
+
 const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
+  const location = useLocation();
   const menuItems = [
-    { icon: Home, label: 'Início', active: true },
-    { icon: List, label: 'Produtos', active: false },
-    { icon: Users, label: 'Artesãos', active: false },
-    { icon: Plus, label: 'Cadastrar Produto', active: false },
-    { icon: Calendar, label: 'Agenda', active: false },
-    { icon: Settings, label: 'Configurações', active: false },
+    { icon: Home, label: 'Início', href: '/' },
+    { icon: List, label: 'Produtos', href: '/products' },
+    { icon: Users, label: 'Sobre Nós', href: '/about' },
+    { icon: Plus, label: 'Contato', href: '/contact' },
   ];
 
   return (
@@ -38,19 +39,20 @@ const Sidebar = ({ isOpen, onClose }: SidebarProps) => {
         <div className="p-6">
           <div className="space-y-2">
             {menuItems.map((item, index) => (
-              <Button
+              <Link
                 key={index}
-                variant={item.active ? "default" : "ghost"}
+                to={item.href}
                 className={cn(
-                  "w-full justify-start space-x-3 h-12",
-                  item.active 
-                    ? "bg-gradient-to-r from-sage-600 to-sage-700 text-white" 
+                  "flex items-center w-full space-x-3 h-12 px-3 rounded transition",
+                  location.pathname === item.href
+                    ? "bg-gradient-to-r from-sage-600 to-sage-700 text-white"
                     : "text-sage-700 hover:bg-sage-100"
                 )}
+                onClick={onClose}
               >
                 <item.icon className="h-5 w-5" />
                 <span>{item.label}</span>
-              </Button>
+              </Link>
             ))}
           </div>
         </div>
