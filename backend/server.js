@@ -1,3 +1,12 @@
+// Rota de login simples
+app.post('/login', (req, res) => {
+  const { email, password } = req.body;
+  // Usuário e senha fixos para demonstração
+  if (email === 'admin@admin.com' && password === '123456') {
+    return res.json({ token: 'fake-jwt-token', user: { email } });
+  }
+  return res.status(401).json({ error: 'Credenciais inválidas.' });
+});
 import express from 'express';
 import cors from 'cors';
 import products from './mock/products.js';
